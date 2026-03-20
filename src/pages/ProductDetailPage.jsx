@@ -33,7 +33,7 @@ const ProductDetailPage = () => {
 
   return (
     <div className="stack-page">
-      <section className="detail-panel">
+      <section className="detail-panel detail-enter" key={product.id}>
         <img src={product.image} alt={product.name} className="detail-image" />
 
         <div className="detail-body">
@@ -60,7 +60,7 @@ const ProductDetailPage = () => {
         </div>
       </section>
 
-      <section className="detail-extra-grid">
+      <section className="detail-extra-grid detail-enter-soft" key={`extra-${product.id}`}>
         <article className="detail-block">
           <h2>Ficha tecnica</h2>
           <div className="spec-list">
