@@ -15,6 +15,22 @@ const ProductDetailPage = () => {
     .filter((item) => item.category === product.category && item.id !== product.id)
     .slice(0, 4);
 
+  const technicalData = [
+    { label: 'SKU', value: `RT-${String(product.id).padStart(6, '0')}` },
+    { label: 'Categoria', value: categoryInfo[product.category]?.label },
+    { label: 'Estoque', value: `${product.stock} unidades` },
+    { label: 'Prazo estimado', value: `${product.shippingDays} dias uteis` },
+    { label: 'Avaliacao media', value: `${product.rating} / 5` },
+    { label: 'Vendedor', value: 'Retro Store Oficial' }
+  ];
+
+  const salesInfo = [
+    'Garantia comercial de 90 dias.',
+    'Nota fiscal simulada disponivel apos confirmacao.',
+    'Troca simplificada em ate 7 dias corridos.',
+    'Suporte em horario comercial.'
+  ];
+
   return (
     <div className="stack-page">
       <section className="detail-panel">
@@ -42,6 +58,29 @@ const ProductDetailPage = () => {
             </Link>
           </div>
         </div>
+      </section>
+
+      <section className="detail-extra-grid">
+        <article className="detail-block">
+          <h2>Ficha tecnica</h2>
+          <div className="spec-list">
+            {technicalData.map((item) => (
+              <div key={item.label} className="spec-row">
+                <span>{item.label}</span>
+                <strong>{item.value}</strong>
+              </div>
+            ))}
+          </div>
+        </article>
+
+        <article className="detail-block">
+          <h2>Informacoes comerciais</h2>
+          <ul>
+            {salesInfo.map((line) => (
+              <li key={line}>{line}</li>
+            ))}
+          </ul>
+        </article>
       </section>
 
       <section className="list-panel">

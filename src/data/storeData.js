@@ -3,27 +3,27 @@ export const brandName = 'Retro Store';
 export const categoryInfo = {
   chocolates: {
     label: 'Chocolates',
-    icon: '🍫',
+    icon: 'CH',
     description: 'Doces, barras e caixas premium para todos os gostos.'
   },
   ferramentas: {
     label: 'Ferramentas',
-    icon: '🔧',
+    icon: 'FT',
     description: 'Itens para reparos, montagem e manutencao domestica.'
   },
   higiene: {
     label: 'Higiene',
-    icon: '🧼',
+    icon: 'HG',
     description: 'Cuidados pessoais para rotina completa.'
   },
   mercearia: {
     label: 'Mercearia',
-    icon: '🛒',
+    icon: 'MC',
     description: 'Itens de mercado para abastecer a casa.'
   },
   tecnologia: {
     label: 'Tecnologia',
-    icon: '💻',
+    icon: 'TC',
     description: 'Gadgets e acessorios para produtividade.'
   }
 };

@@ -1,9 +1,40 @@
+import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
-import { brandName, categoryInfo, homepageHighlights, products } from '../data/storeData';
+import { brandName, categoryInfo, formatCurrency, homepageHighlights, products } from '../data/storeData';
 
 const HomePage = () => {
   const spotlight = products.slice(0, 8);
+  const [eventSeed, setEventSeed] = useState(() => Math.floor(Math.random() * 999999));
+
+  const promoEvent = useMemo(() => {
+    const eventNames = [
+      'Evento relampago de estoque',
+      'Virada de precos da semana',
+      'Selecao comercial em promocao'
+    ];
+    const title = eventNames[eventSeed % eventNames.length];
+    const selected = [];
+    const used = new Set();
+
+    while (selected.length < 6) {
+      const index = (eventSeed + selected.length * 37 + Math.floor(selected.length * 9.2)) % products.length;
+      const candidate = products[index];
+      if (used.has(candidate.id)) {
+        continue;
+      }
+      used.add(candidate.id);
+      const discount = 8 + ((candidate.id * 3) % 18);
+      const promoPrice = Number((candidate.price * (1 - discount / 100)).toFixed(2));
+      selected.push({
+        ...candidate,
+        discount,
+        promoPrice
+      });
+    }
+
+    return { title, selected };
+  }, [eventSeed]);
 
   return (
     <div className="stack-page">
@@ -46,6 +77,31 @@ const HomePage = () => {
               </div>
               <p>{value.description}</p>
               <Link to={`/filtros?categoria=${key}`}>Filtrar categoria</Link>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="list-panel">
+        <div className="list-heading">
+          <div>
+            <h2>{promoEvent.title}</h2>
+            <p>Itens escolhidos aleatoriamente para a vitrine de promocoes.</p>
+          </div>
+          <button type="button" className="secondary-btn random-btn" onClick={() => setEventSeed(Math.floor(Math.random() * 999999))}>
+            Novo evento
+          </button>
+        </div>
+        <div className="event-grid">
+          {promoEvent.selected.map((item) => (
+            <article key={item.id} className="event-card">
+              <img src={item.image} alt={item.name} loading="lazy" />
+              <div>
+                <h3>{item.name}</h3>
+                <p>{item.discount}% off no evento</p>
+                <strong>{formatCurrency(item.promoPrice)}</strong>
+                <Link to={`/produto/${item.id}`}>Abrir pagina do item</Link>
+              </div>
             </article>
           ))}
         </div>
