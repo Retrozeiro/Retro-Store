@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 const categoryInfo = {
   Higiene: { icon: '🧼', description: 'Cuidados diários para pele, cabelo e higiene bucal' },
@@ -9,6 +9,39 @@ const categoryInfo = {
 };
 
 const categories = ['Todos', ...Object.keys(categoryInfo)];
+
+const carouselDeals = [
+  {
+    title: 'Kit Fresh Care',
+    description: 'Selecionamos cuidados de higiene em embalagem compacta para tropicalizar o momento wellness.',
+    highlight: '+15% de energia renovada',
+    category: 'Higiene'
+  },
+  {
+    title: 'Oficina Express',
+    description: 'Ferramentas premium com acabamento resistente, prontas para ajustes rápidos em casa.',
+    highlight: 'Frete fictício em até 2 dias',
+    category: 'Ferramenta'
+  },
+  {
+    title: 'Estoque saboroso',
+    description: 'Lanches, cafés e ingredientes preparados para abastecer a despensa sem pesar no bolso.',
+    highlight: 'Combo imaginário com 5 itens gratuitos',
+    category: 'Comida'
+  },
+  {
+    title: 'Lar iluminado',
+    description: 'Itens para casa com texturas suaves e tecnologia conectada para um ambiente mais acolhedor.',
+    highlight: 'Validade apenas nesta simulação',
+    category: 'Casa'
+  },
+  {
+    title: 'Energia inteligente',
+    description: 'Gadgets e carregadores que combinam estética e inteligência para quem vive online.',
+    highlight: '3 kits visualizados por segundo',
+    category: 'Tecnologia'
+  }
+];
 
 const baseItems = {
   Higiene: [
@@ -92,7 +125,8 @@ const formatCurrency = (value) =>
 
 const App = () => {
   const [products] = useState(() => generateProducts(520));
-  const [categoryFilter, setCategoryFilter] = useState('Todos');
+  const [carouselIndex, setCarouselIndex] = useState(0);
+  const [categoryFilters, setCategoryFilters] = useState(['Todos']);
   const [searchTerm, setSearchTerm] = useState('');
   const [cart, setCart] = useState({});
   const [loginForm, setLoginForm] = useState({ name: '', email: '' });
@@ -100,17 +134,100 @@ const App = () => {
   const [loginMessage, setLoginMessage] = useState('');
   const [deliveryLocation, setDeliveryLocation] = useState('');
   const [purchaseNotice, setPurchaseNotice] = useState('');
+  const [selectedProducts, setSelectedProducts] = useState({});
+  const [expandedProduct, setExpandedProduct] = useState(null);
+
+  const productMap = useMemo(() => {
+    const map = {};
+    products.forEach((product) => {
+      map[product.id] = product;
+    });
+    return map;
+  }, [products]);
+
+  const activeCategories = useMemo(() => {
+    if (categoryFilters.includes('Todos')) {
+      return Object.keys(categoryInfo);
+    }
+    return categoryFilters;
+  }, [categoryFilters]);
 
   const filteredProducts = useMemo(() => {
     return products.filter((product) => {
-      const matchesCategory = categoryFilter === 'Todos' || product.category === categoryFilter;
+      const matchesCategory = activeCategories.includes(product.category);
       const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase());
       return matchesCategory && matchesSearch;
     });
-  }, [products, categoryFilter, searchTerm]);
+  }, [products, activeCategories, searchTerm]);
 
   const cartItems = Object.values(cart);
   const subtotal = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+
+  const selectedCount = Object.keys(selectedProducts).length;
+  const selectedTotal = selectedCount
+    ? Object.keys(selectedProducts).reduce((total, id) => {
+        const product = productMap[id];
+        return product ? total + product.price : total;
+      }, 0)
+    : 0;
+
+  const toggleCategoryFilter = (category) => {
+    if (category === 'Todos') {
+      setCategoryFilters(['Todos']);
+      return;
+    }
+    setCategoryFilters((current) => {
+      const sanitized = current.filter((value) => value !== 'Todos');
+      const includes = sanitized.includes(category);
+      const next = includes ? sanitized.filter((value) => value !== category) : [...sanitized, category];
+      if (next.length === 0) {
+        return ['Todos'];
+      }
+      return next;
+    });
+  };
+
+  const toggleProductSelection = (id) => {
+    setSelectedProducts((current) => {
+      if (current[id]) {
+        const { [id]: removed, ...rest } = current;
+        return rest;
+      }
+      return { ...current, [id]: true };
+    });
+  };
+
+  const addSelectedToCart = () => {
+    if (!selectedCount) return;
+    setCart((current) => {
+      const next = { ...current };
+      Object.keys(selectedProducts).forEach((id) => {
+        const product = productMap[id];
+        if (!product) return;
+        const existing = next[id];
+        next[id] = {
+          ...product,
+          quantity: existing ? existing.quantity + 1 : 1
+        };
+      });
+      return next;
+    });
+  };
+
+  const clearSelection = () => setSelectedProducts({});
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCarouselIndex((prev) => (prev + 1) % carouselDeals.length);
+    }, 6200);
+    return () => clearInterval(timer);
+  }, [carouselDeals.length]);
+
+  const moveCarousel = (direction) => {
+    setCarouselIndex((prev) => (prev + direction + carouselDeals.length) % carouselDeals.length);
+  };
+
+  const currentDeal = carouselDeals[carouselIndex];
 
   const handleAddProduct = (product) => {
     setCart((current) => {
@@ -173,7 +290,7 @@ const App = () => {
   return (
     <div className="page">
       <header className="hero">
-        <div>
+        <div className="hero-copy">
           <p className="badge">Vitrine para exposição</p>
           <h1>Loja conceito com mais de 500 produtos variados</h1>
           <p className="intro">
@@ -188,6 +305,34 @@ const App = () => {
             <div>
               <strong>{cartItems.reduce((sum, item) => sum + item.quantity, 0)}</strong>
               <span>Produtos simulados no carrinho</span>
+            </div>
+          </div>
+          <div className="hero-carousel">
+            <div className="carousel-controls">
+              <button type="button" onClick={() => moveCarousel(-1)} aria-label="Oferta anterior">
+                ‹
+              </button>
+              <div className="carousel-card">
+                <p className="carousel-tag">Oferta fictícia • {currentDeal.category}</p>
+                <h3>{currentDeal.title}</h3>
+                <p>{currentDeal.description}</p>
+                <div className="carousel-meta">
+                  <strong>{currentDeal.highlight}</strong>
+                  <span>Categoria: {currentDeal.category}</span>
+                </div>
+              </div>
+              <button type="button" onClick={() => moveCarousel(1)} aria-label="Próxima oferta">
+                ›
+              </button>
+            </div>
+            <div className="carousel-indicators">
+              {carouselDeals.map((_, index) => (
+                <span
+                  key={`indicator-${index}`}
+                  className={index === carouselIndex ? 'active' : ''}
+                  onClick={() => setCarouselIndex(index)}
+                />
+              ))}
             </div>
           </div>
         </div>
@@ -223,8 +368,8 @@ const App = () => {
             {categories.map((category) => (
               <button
                 key={category}
-                className={categoryFilter === category ? 'active' : ''}
-                onClick={() => setCategoryFilter(category)}
+                className={categoryFilters.includes(category) ? 'active' : ''}
+                onClick={() => toggleCategoryFilter(category)}
                 type="button"
               >
                 {category === 'Todos' ? 'Todos' : `${categoryInfo[category].icon} ${category}`}
@@ -244,21 +389,79 @@ const App = () => {
             <p>{filteredProducts.length} itens encontrados</p>
           </div>
         </section>
+        <div className="selection-panel">
+          <div>
+            <strong>
+              {selectedCount
+                ? `${selectedCount} item${selectedCount > 1 ? 's' : ''} selecionado${selectedCount > 1 ? 's' : ''}`
+                : 'Selecione vários produtos'}
+            </strong>
+            <p>
+              {selectedCount
+                ? `Total fictício: ${formatCurrency(selectedTotal)}`
+                : 'Passe o mouse ou clique em um card para expandir e destacar.'}
+            </p>
+          </div>
+          <div className="selection-actions">
+            <button type="button" disabled={!selectedCount} onClick={addSelectedToCart}>
+              Adicionar selecionados ao carrinho
+            </button>
+            <button type="button" disabled={!selectedCount} onClick={clearSelection}>
+              Limpar seleção
+            </button>
+          </div>
+        </div>
         <section className="content">
           <div className="grid">
             {filteredProducts.map((product) => (
-              <article className="product-card" key={product.id}>
-                <div className="product-icon">{product.icon}</div>
-                <h3>{product.name}</h3>
-                <p className="subtitle">{product.category}</p>
+              <article
+                className={`product-card ${selectedProducts[product.id] ? 'selected' : ''} ${
+                  expandedProduct === product.id ? 'expanded' : ''
+                }`}
+                key={product.id}
+                onMouseEnter={() => setExpandedProduct(product.id)}
+                onMouseLeave={() => setExpandedProduct((prev) => (prev === product.id ? null : prev))}
+                onFocus={() => setExpandedProduct(product.id)}
+                onBlur={() => setExpandedProduct((prev) => (prev === product.id ? null : prev))}
+                onClick={() => toggleProductSelection(product.id)}
+                tabIndex={0}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    toggleProductSelection(product.id);
+                  }
+                }}
+                aria-pressed={!!selectedProducts[product.id]}
+                aria-expanded={expandedProduct === product.id}
+              >
+                <div className="product-head">
+                  <div className="product-icon">{product.icon}</div>
+                  <div>
+                    <h3>{product.name}</h3>
+                    <p className="subtitle">{product.category}</p>
+                  </div>
+                </div>
                 <p className="description">{product.description}</p>
-                <div className="product-meta">
-                  <span>Estoque: {product.stock}</span>
-                  <span>Entrega em até {product.deliveryTime} dias úteis</span>
+                <div className="product-extra">
+                  <div className="product-meta">
+                    <span>Estoque: {product.stock}</span>
+                    <span>Entrega em até {product.deliveryTime} dias úteis</span>
+                  </div>
+                  <p className="extra-note">
+                    {selectedProducts[product.id]
+                      ? 'Marcado para o combo. Clique novamente para remover da seleção.'
+                      : 'Detalhes extras aparecem quando você expande este box.'}
+                  </p>
                 </div>
                 <div className="card-footer">
                   <strong>{formatCurrency(product.price)}</strong>
-                  <button type="button" onClick={() => handleAddProduct(product)}>
+                  <button
+                    type="button"
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      handleAddProduct(product);
+                    }}
+                  >
                     Adicionar ao carrinho
                   </button>
                 </div>
