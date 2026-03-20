@@ -36,6 +36,8 @@ const HomePage = () => {
     return { title, selected };
   }, [eventSeed]);
 
+  const shuffleEvent = () => setEventSeed(Math.floor(Math.random() * 999999));
+
   return (
     <div className="stack-page">
       <section className="hero-panel">
@@ -88,11 +90,11 @@ const HomePage = () => {
             <h2>{promoEvent.title}</h2>
             <p>Itens escolhidos aleatoriamente para a vitrine de promocoes.</p>
           </div>
-          <button type="button" className="secondary-btn random-btn" onClick={() => setEventSeed(Math.floor(Math.random() * 999999))}>
+          <button type="button" className="secondary-btn random-btn" onClick={shuffleEvent}>
             Novo evento
           </button>
         </div>
-        <div className="event-grid">
+        <div className="event-grid" key={eventSeed}>
           {promoEvent.selected.map((item) => (
             <article key={item.id} className="event-card">
               <img src={item.image} alt={item.name} loading="lazy" />

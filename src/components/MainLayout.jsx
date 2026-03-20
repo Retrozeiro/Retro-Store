@@ -1,4 +1,4 @@
-import { Link, NavLink, Outlet } from 'react-router-dom';
+import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { brandName } from '../data/storeData';
 import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
@@ -13,6 +13,8 @@ const navLinks = [
 const MainLayout = () => {
   const { user } = useAuth();
   const { units } = useCart();
+  const location = useLocation();
+  const routeKey = `${location.pathname}${location.search}`;
 
   return (
     <div className="app-shell">
@@ -47,7 +49,9 @@ const MainLayout = () => {
       </header>
 
       <main className="page-content">
-        <Outlet />
+        <div key={routeKey} className="route-shell">
+          <Outlet />
+        </div>
       </main>
     </div>
   );
