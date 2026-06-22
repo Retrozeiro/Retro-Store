@@ -1,120 +1,120 @@
-export const brandName = 'Retro Store';
+export const brandName = 'Carmelita Festas';
 
 export const categoryInfo = {
-  chocolates: {
-    label: 'Chocolates',
-    icon: 'CH',
-    description: 'Doces, barras e caixas premium para todos os gostos.'
+  doces: {
+    label: 'Doces',
+    icon: 'DO',
+    description: 'Bombons, balas e kits para festas e lembrancinhas.'
   },
-  ferramentas: {
-    label: 'Ferramentas',
-    icon: 'FT',
-    description: 'Itens para reparos, montagem e manutencao domestica.'
+  embalagens: {
+    label: 'Embalagens',
+    icon: 'EM',
+    description: 'Caixas, fitas, sacos e papeis para embalar com estilo.'
   },
-  higiene: {
-    label: 'Higiene',
-    icon: 'HG',
-    description: 'Cuidados pessoais para rotina completa.'
+  festas: {
+    label: 'Artigos de Festa',
+    icon: 'AF',
+    description: 'Decorações, descartáveis e itens temáticos para aniversários.'
   },
-  mercearia: {
-    label: 'Mercearia',
-    icon: 'MC',
-    description: 'Itens de mercado para abastecer a casa.'
+  fantasias: {
+    label: 'Fantasias',
+    icon: 'FA',
+    description: 'Acessórios e roupas para carnaval, festa a fantasia e brincadeiras.'
   },
-  tecnologia: {
-    label: 'Tecnologia',
-    icon: 'TC',
-    description: 'Gadgets e acessorios para produtividade.'
+  criativos: {
+    label: 'Criativos',
+    icon: 'CR',
+    description: 'Adesivos, tags e materiais para personalizar brindes e lembranças.'
   }
 };
 
 const productTemplates = {
-  chocolates: [
-    'Chocolate 1 ao leite 90g',
-    'Chocolate 2 meio amargo 80g',
-    'Chocolate 3 branco com cookies',
-    'Bombom artesanal avela',
-    'Tablete trufado caramelo',
-    'Caixa mix retro cacau',
-    'Drageado crocante classic',
-    'Barra intensa 70% cacau'
+  doces: [
+    'Mix de balas sortidas 300g',
+    'Bombom artesanal sortido 12un',
+    'Brigadeiro gourmet em copinho',
+    'Tablete de chocolate decorado',
+    'Trufa recheada premium 6un',
+    'Pirulito artesanal colorido 10un',
+    'Kit mini cupcakes festa 8un',
+    'Bala de goma nostalgic 200g'
   ],
-  ferramentas: [
-    'Chave de fenda 1 ponta reta',
-    'Chave de fenda 2 ponta cruz',
-    'Alicate universal 8 polegadas',
-    'Trena compacta 5m',
-    'Martelo emborrachado 500g',
-    'Parafusadeira sem fio 12v',
-    'Jogo de brocas multiuso',
-    'Nivelador de mao aluminio'
+  embalagens: [
+    'Caixa kraft decorada 10un',
+    'Saco celofan 20x30cm 15un',
+    'Fita cetim 10mm 20m',
+    'Tag personalizada kraft 12un',
+    'Papel seda colorido 5 folhas',
+    'Bolsa papel festa 8un',
+    'Caixa com visor 12un',
+    'Embalagem para doces 50un'
   ],
-  higiene: [
-    'Sabonete liquido suave',
-    'Shampoo hidratante diario',
-    'Condicionador reparacao intensa',
-    'Escova dental ultra macia',
-    'Creme dental fresh mint',
-    'Protetor solar facial fps50',
-    'Desodorante roll-on clean',
-    'Kit cuidados premium pele'
+  festas: [
+    'Kit decoracao de baloes 40pcs',
+    'Pratos e copos descartaveis',
+    'Chapeu cone de festa 10un',
+    'Toalha de mesa plastica',
+    'Painel de parede em papel metalizado',
+    'Caixa de confetes coloridos 250g',
+    'Guirlanda festa surpresa',
+    'Fitas decorativas para mesa'
   ],
-  mercearia: [
-    'Arroz tipo 1 premium 5kg',
-    'Feijao carioca selecionado 1kg',
-    'Cafe torrado e moido 500g',
-    'Macarrao espaguete classic',
-    'Molho de tomate caseiro',
-    'Azeite extra virgem 500ml',
-    'Biscoito amanteigado retro',
-    'Suco integral de uva 1L'
+  fantasias: [
+    'Mascara carnaval glitter',
+    'Peruca colorida festa',
+    'Tiara princesa com brilhos',
+    'Acessorio varinha de fada',
+    'Capa vampiro infantil',
+    'Maquiagem facial de carnaval',
+    'Chapeu pirata adulto',
+    'Saia tutu colorida'
   ],
-  tecnologia: [
-    'Fone bluetooth retro bass',
-    'Carregador turbo usb-c 30w',
-    'Mouse sem fio ergonomico',
-    'Teclado mecanico compacto',
-    'Suporte articulado notebook',
-    'Webcam full hd 1080p',
-    'Hub usb multiplo 6 portas',
-    'Power bank 20000mah'
+  criativos: [
+    'Adesivos decorativos 50un',
+    'Molde silicone lembrancinha',
+    'Stencil letras festa',
+    'Caneta metalica para papel',
+    'Mini laço de cetim 40un',
+    'Fitilho decorativo 20m',
+    'Tag de agradecimento 20un',
+    'Mini bandeirola de papel 12un'
   ]
 };
 
 const imagePool = {
-  chocolates: [
-    'https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&w=900&q=80',
-    'https://images.unsplash.com/photo-1548907040-4baa42d10919?auto=format&fit=crop&w=900&q=80',
-    'https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=900&q=80',
-    'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=900&q=80'
+  doces: [
+    'https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=900&q=80',
+    'https://images.unsplash.com/photo-1610448571322-3d5a5d1d1f4b?auto=format&fit=crop&w=900&q=80',
+    'https://images.unsplash.com/photo-1547517028-79d0d34e57b4?auto=format&fit=crop&w=900&q=80',
+    'https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?auto=format&fit=crop&w=900&q=80'
   ],
-  ferramentas: [
-    'https://images.unsplash.com/photo-1530124566582-a618bc2615dc?auto=format&fit=crop&w=900&q=80',
-    'https://images.unsplash.com/photo-1581147036324-c1c1506f5f6b?auto=format&fit=crop&w=900&q=80',
-    'https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=900&q=80',
-    'https://images.unsplash.com/photo-1581579188871-45ea61f2aeb8?auto=format&fit=crop&w=900&q=80'
-  ],
-  higiene: [
-    'https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=900&q=80',
-    'https://images.unsplash.com/photo-1570194065650-d99fb4bedf0a?auto=format&fit=crop&w=900&q=80',
-    'https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?auto=format&fit=crop&w=900&q=80',
-    'https://images.unsplash.com/photo-1596755389378-c31d21fd1273?auto=format&fit=crop&w=900&q=80'
-  ],
-  mercearia: [
+  embalagens: [
     'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=80',
-    'https://images.unsplash.com/photo-1606787366850-de6330128bfc?auto=format&fit=crop&w=900&q=80',
-    'https://images.unsplash.com/photo-1543168256-418811576931?auto=format&fit=crop&w=900&q=80',
-    'https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=900&q=80'
+    'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=900&q=80',
+    'https://images.unsplash.com/photo-1508051123996-69f8caf4891f?auto=format&fit=crop&w=900&q=80',
+    'https://images.unsplash.com/photo-1514409149934-5d32cc0d82d1?auto=format&fit=crop&w=900&q=80'
   ],
-  tecnologia: [
-    'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=900&q=80',
-    'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80',
-    'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=900&q=80',
-    'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80'
+  festas: [
+    'https://images.unsplash.com/photo-1524777312-0298f4b55bd0?auto=format&fit=crop&w=900&q=80',
+    'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80',
+    'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=900&q=80',
+    'https://images.unsplash.com/photo-1532635249-8d6a4d0bb1e3?auto=format&fit=crop&w=900&q=80'
+  ],
+  fantasias: [
+    'https://images.unsplash.com/photo-1522098543979-ffc7f79d12a8?auto=format&fit=crop&w=900&q=80',
+    'https://images.unsplash.com/photo-1544177156-29f5d69f1b36?auto=format&fit=crop&w=900&q=80',
+    'https://images.unsplash.com/photo-1528731708534-816fe59f90c7?auto=format&fit=crop&w=900&q=80',
+    'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80'
+  ],
+  criativos: [
+    'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=900&q=80',
+    'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=900&q=80',
+    'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=900&q=80',
+    'https://images.unsplash.com/photo-1483389127114-0d5e5271112c?auto=format&fit=crop&w=900&q=80'
   ]
 };
 
-const badges = ['Frete gratis', 'Entrega hoje', 'Loja oficial', 'Oferta retro'];
+const badges = ['Frete gratis', 'Entrega hoje', 'Loja oficial', 'Oferta de festa'];
 
 const categoryKeys = Object.keys(categoryInfo);
 
@@ -159,19 +159,19 @@ export const shippingOptions = [
 
 export const homepageHighlights = [
   {
-    title: 'Semana Retro de Chocolates',
-    text: 'Combinacoes especiais para presentear e vender mais.',
-    cta: 'Ver ofertas'
+    title: 'Doces e lembrancinhas para festa',
+    text: 'Encontre opções prontas e personalizadas para aniversários e eventos.',
+    cta: 'Ver doces'
   },
   {
-    title: 'Ferramentas com envio rapido',
-    text: 'Chave de fenda, kits e acessorios para reparos imediatos.',
-    cta: 'Explorar ferramentas'
+    title: 'Embalagens para presentes e doces',
+    text: 'Caixas, sacos e fitas para deixar sua entrega ainda mais bonita.',
+    cta: 'Explorar embalagens'
   },
   {
-    title: 'Higiene e mercearia no mesmo carrinho',
-    text: 'Monte pedidos completos com simulacao de frete em tempo real.',
-    cta: 'Comecar compra'
+    title: 'Fantasias e artigos temáticos',
+    text: 'Itens para brincar, decorar e montar looks de festa completos.',
+    cta: 'Montar sua festa'
   }
 ];
 

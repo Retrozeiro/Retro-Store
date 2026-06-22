@@ -21,7 +21,7 @@ const ProductDetailPage = () => {
     { label: 'Estoque', value: `${product.stock} unidades` },
     { label: 'Prazo estimado', value: `${product.shippingDays} dias uteis` },
     { label: 'Avaliacao media', value: `${product.rating} / 5` },
-    { label: 'Vendedor', value: 'Retro Store Oficial' }
+    { label: 'Vendedor', value: 'Carmelita Festas Oficial' }
   ];
 
   const salesInfo = [

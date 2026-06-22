@@ -54,7 +54,7 @@ const AuthPage = () => {
             type="text"
             value={form.name}
             onChange={(event) => setForm((current) => ({ ...current, name: event.target.value }))}
-            placeholder="Ex: Ana Retro"
+            placeholder="Ex: Ana Carmelita"
           />
         </label>
 
@@ -64,7 +64,7 @@ const AuthPage = () => {
             type="email"
             value={form.email}
             onChange={(event) => setForm((current) => ({ ...current, email: event.target.value }))}
-            placeholder="conta@retrostore.com"
+            placeholder="conta@carmelitafestas.com"
           />
         </label>
 
@@ -80,7 +80,7 @@ const AuthPage = () => {
           </label>
         )}
 
-        <button type="submit">{mode === 'login' ? 'Entrar na Retro Store' : 'Criar conta ficticia'}</button>
+        <button type="submit">{mode === 'login' ? 'Entrar na Carmelita Festas' : 'Criar conta ficticia'}</button>
       </form>
 
       {message && <p className="auth-message">{message}</p>}

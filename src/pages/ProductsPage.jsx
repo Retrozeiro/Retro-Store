@@ -19,14 +19,14 @@ const ProductsPage = () => {
       <section className="list-panel">
         <div className="list-heading vertical">
           <div>
-            <h1>Pagina geral de produtos</h1>
-            <p>Catalogo completo da Retro Store com centenas de itens e pagina individual por produto.</p>
+            <h1>Catálogo de produtos</h1>
+            <p>Explore doces, embalagens, artigos de festa e fantasias da Carmelita Festas.</p>
           </div>
           <label className="search-label">
             Buscar produto
             <input
               type="search"
-              placeholder="Ex: chocolate, chave de fenda, shampoo"
+              placeholder="Ex: bombom, fita, fantasia"
               value={search}
               onChange={(event) => setSearch(event.target.value)}
             />

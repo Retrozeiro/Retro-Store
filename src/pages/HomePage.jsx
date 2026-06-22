@@ -43,17 +43,16 @@ const HomePage = () => {
       <section className="hero-panel">
         <div>
           <p className="eyebrow">{brandName}</p>
-          <h1>Marketplace completo com produtos, login, checkout e rotas reais</h1>
+          <h1>Seu ponto de festa para doces, embalagens e fantasias</h1>
           <p>
-            Estrutura pronta para Vite com paginas separadas de autenticacao, catalogo, filtro avancado, detalhe por
-            produto e simulacao de pagamento com frete customizavel.
+            Encontre produtos para aniversários, lembrancinhas, decoração e presentes com visual de loja real.
           </p>
           <div className="hero-actions">
             <Link to="/produtos" className="primary-link">
-              Ver produtos
+              Ver catálogo
             </Link>
             <Link to="/auth" className="secondary-link">
-              Entrar na conta
+              Entrar
             </Link>
           </div>
         </div>

@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
     const email = payload?.email?.trim();
 
     if (!name || !email) {
-      return { ok: false, message: 'Preencha nome e e-mail para entrar na Retro Store.' };
+      return { ok: false, message: 'Preencha nome e e-mail para entrar na Carmelita Festas.' };
     }
 
     setUser({ name, email, joinedAt: new Date().toISOString() });
@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     setUser({ name, email, joinedAt: new Date().toISOString() });
-    return { ok: true, message: 'Cadastro simulado concluido. Sua conta Retro Store esta ativa.' };
+    return { ok: true, message: 'Cadastro simulado concluido. Sua conta Carmelita Festas esta ativa.' };
   };
 
   const logout = () => setUser(null);

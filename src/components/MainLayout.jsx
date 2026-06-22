@@ -5,9 +5,9 @@ import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
 
 const navLinks = [
-  { to: '/', label: 'Inicio' },
-  { to: '/produtos', label: 'Produtos' },
-  { to: '/filtros', label: 'Filtros' },
+  { to: '/', label: 'Início' },
+  { to: '/produtos', label: 'Catálogo' },
+  { to: '/filtros', label: 'Categorias' },
   { to: '/checkout', label: 'Checkout' }
 ];
 
@@ -27,7 +27,7 @@ const MainLayout = () => {
           <Link className="brand" to="/">
             {brandName}
           </Link>
-          <p className="brand-sub">Marketplace de exposicao com fluxo completo</p>
+          <p className="brand-sub">Doces, embalagens, artigos de festa e fantasias em um só lugar</p>
         </div>
 
         <button
